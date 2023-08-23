@@ -26,6 +26,9 @@ function App() {
       });
   }, []);
 
+
+
+
   const handleNameSubmit = () => {
     // Store name
     axios.post('http://localhost:5000/api/storeName', { name })

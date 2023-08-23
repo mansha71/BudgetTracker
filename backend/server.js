@@ -22,6 +22,8 @@ const db = new sqlite3.Database('mydatabase.db', sqlite3.OPEN_READWRITE, (err) =
     }
 });
 
+
+
 // Store name in the database
 app.post('/api/storeName', (req, res) => {
     const name = req.body.name;
@@ -53,7 +55,8 @@ app.get('/api/retrieveName', (req, res) => {
     });
 });
 
-// ...
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
