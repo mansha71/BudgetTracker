@@ -5,6 +5,7 @@ function App() {
   const [expenses, setExpenses] = useState([]);
   const [name, setName] = useState('');
   const [storedName, setStoredName] = useState('');
+  const [money, setMoney] = useState(0);
 
   useEffect(() => {
     // Fetch expenses
@@ -43,6 +44,17 @@ function App() {
 
   return (
     <div>
+      <div>
+        <h1>Budget Tracker</h1>
+        <form action="click">
+          <input type="text" 
+          placeholder='Enter Starting Money' 
+          pattern="\d*"
+          />
+          <button type="submit">Set</button>
+        </form>
+      </div>
+      <div>
       <h1>Expense List</h1>
       <ul>
         {expenses.map(expense => (
@@ -61,6 +73,7 @@ function App() {
         <button onClick={handleNameSubmit}>Store Name</button>
       </div>
       {storedName && <p>Stored name: {storedName}</p>}
+      </div>
     </div>
   );
 }
