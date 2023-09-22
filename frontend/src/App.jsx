@@ -5,9 +5,8 @@ function App() {
   const [expenses, setExpenses] = useState([]);
   const [name, setName] = useState('');
   const [storedName, setStoredName] = useState('');
-  const [money, setMoney] = useState(0);
-
   useEffect(() => {
+    
     // Fetch expenses
     axios.get('http://localhost:5000/api/expenses')
       .then(response => {
@@ -28,6 +27,9 @@ function App() {
   }, []);
 
 
+  const [money, setMoney] = useState(0);
+  const [moneyInputChange, setMoneyInput] = useState('');
+  const [transactions, setTransactions] = useState < string[]>([]);
 
 
   const handleNameSubmit = () => {
@@ -42,18 +44,40 @@ function App() {
       });
   };
 
+  const handleMoneySet = (e) => {
+    e.preventDefault();
+    const enteredMoney = parseInt(moneyInputChange, 10);
+    if (!isNaN(enteredMoney)) {
+      setMoney(enteredMoney);
+      setMoneyInput('');
+    }
+  }
+
+  const handleMoneyInputChange = (e) => {
+    setMoneyInput(e.target.value);
+  }
+
   return (
     <div>
       <div>
         <h1>Budget Tracker</h1>
-        <form action="click">
+        <h3>{ money}</h3>
+        <form onSubmit={handleMoneySet}>
           <input type="text" 
           placeholder='Enter Starting Money' 
-          pattern="\d*"
+            pattern="\d*"
+            value = {moneyInputChange}
+            onChange={handleMoneyInputChange}
           />
           <button type="submit">Set</button>
         </form>
       </div>
+
+
+
+
+
+
       <div>
       <h1>Expense List</h1>
       <ul>
