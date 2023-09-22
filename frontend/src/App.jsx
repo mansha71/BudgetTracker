@@ -29,7 +29,7 @@ function App() {
 
   const [money, setMoney] = useState(0);
   const [moneyInputChange, setMoneyInput] = useState('');
-  const [transactions, setTransactions] = useState < string[]>([]);
+  const [transactionName, setTransactionName] = useState([]);
 
 
   const handleNameSubmit = () => {
@@ -57,6 +57,12 @@ function App() {
     setMoneyInput(e.target.value);
   }
 
+  function addNewTransaction() {
+    const url = process.env.REACT_APP_API_URL;
+    console.log(url)
+    // fetch('')
+  }
+
   return (
     <div>
       <div>
@@ -73,11 +79,26 @@ function App() {
         </form>
       </div>
 
+      <div>
+        <form onSubmit={addNewTransaction}>
+          <div>
+            <label name="nameoftran">Enter Transaction: Name</label>
+            <input type="text" name="nameoftran" id="tranName" value={transactionName} onChange={ev => setTransactionName(ev.target.value)}/>
+          </div>
+          <div>
+            <label name="valoftran">Enter Transaction Value:</label>
+            <input type="text" name="valoftran" id="tranVal" />
+          </div>
+          <button type='submit'>Enter</button>
+          
+        </form>
+      </div>
 
 
 
 
 
+{/* 
       <div>
       <h1>Expense List</h1>
       <ul>
@@ -97,7 +118,7 @@ function App() {
         <button onClick={handleNameSubmit}>Store Name</button>
       </div>
       {storedName && <p>Stored name: {storedName}</p>}
-      </div>
+      </div> */}
     </div>
   );
 }
